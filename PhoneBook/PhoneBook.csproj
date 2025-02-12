@@ -16,9 +16,12 @@
 
   <ItemGroup>
     <Folder Include="Model\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Enums\" />
-    <Folder Include="ViewModel\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DL\DL.csproj" />
+    <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>
 
 </Project>
