@@ -5,8 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhoneBook"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="450" Width="800"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:viewmodels="clr-namespace:PhoneBook.ViewModel"
+        xmlns:xamlExt="clr-namespace:PhoneBook.Extensions.Xaml"
+        xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks">
+
+    <Window.Resources>
+        <xamlExt:DISource Type="{x:Type viewmodels:MainWindowViewModel}" x:Key="vm"/>
+    </Window.Resources>
+    <Window.DataContext>
+        <Binding Source="{StaticResource vm}"/>
+    </Window.DataContext>
+    <Grid DataContext="{Binding Source={StaticResource vm}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Margin="10 10 0 0" Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Frame Grid.Row="1" x:Name="rootFrame" NavigationUIVisibility="Hidden">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Loaded">
+                        <i:ChangePropertyAction TargetObject="{Binding Source={StaticResource vm}}" PropertyName="NavigationService" Value="{Binding NavigationService,ElementName=rootFrame}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Frame>
+        </Grid>
     </Grid>
 </Window>

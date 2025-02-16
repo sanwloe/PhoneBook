@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using PhoneBook.Extensions.Xaml;
+using System.Windows.Navigation;
 
 namespace PhoneBook
 {
