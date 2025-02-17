@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using Model.Models;
 using PhoneBook.Abstractions;
 using PhoneBook.Extensions;
+using PhoneBook.Model;
 using PhoneBook.Services;
 using PhoneBook.View.Pages;
 using System;

@@ -31,9 +31,39 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Width="*" Header="Name" Binding="{Binding FirstName}"></DataGridTextColumn>
-                <DataGridTextColumn Width="*" Header="Date of registration" Binding="{DXBinding 'DateOfRegistration.DateTime.ToLocalTime()'}"/>
-                <DataGridTextColumn Width="*" Header="Time of the last data update" Binding="{DXBinding 'LastUpdateDate.DateTime.ToLocalTime()'}"/>
+                <DataGridTemplateColumn Width="*" Header="Name">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding FirstName}">
+                                <TextBlock.InputBindings>
+                                    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OnMouseLeftDoubleClickNumberSelectedCommand,Source={StaticResource vm}}" CommandParameter="{Binding}"/>
+                                </TextBlock.InputBindings>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" Header="Date of registration">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding DateOfRegStr}">
+                                <TextBlock.InputBindings>
+                                    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OnMouseLeftDoubleClickNumberSelectedCommand,Source={StaticResource vm}}" CommandParameter="{Binding}"/>
+                                </TextBlock.InputBindings>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" Header="Time of the last data update">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding LastUpdateDateStr}">
+                                <TextBlock.InputBindings>
+                                    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OnMouseLeftDoubleClickNumberSelectedCommand,Source={StaticResource vm}}" CommandParameter="{Binding}"/>
+                                </TextBlock.InputBindings>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

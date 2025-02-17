@@ -14,5 +14,6 @@ namespace Model.Models
         public string FullName { get; set; } = string.Empty;
         public DateTimeOffset DateOfRegistration { get; set; } = DateTimeOffset.Now;
         public DateTimeOffset LastUpdateDate { get; set; } = DateTimeOffset.Now;
+        public string Description { get; set; } = string.Empty;
     }
 }

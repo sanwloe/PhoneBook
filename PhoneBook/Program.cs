@@ -22,7 +22,7 @@ namespace PhoneBook
             builder.ConfigureServices((builder,services) =>
             {
                 services.AddSingleton<App>();
-                services.AddSqlite<PBDataContext>("DataSource=database.db");
+                services.AddSqlServer<PBDataContext>(null);
                 services.AddSingleton<NumberInfoService>();
             });
             var host = builder.Build();

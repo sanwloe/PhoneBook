@@ -29,5 +29,49 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </TextBlock>
+
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Margin" Value="5"/>
+                </Style>
+            </Grid.Resources>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <UniformGrid Grid.Row="0" Columns="2" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock Text="Full name"/>
+                <TextBlock FontWeight="Bold" Text="{Binding Number.FullName}"/>
+
+                <TextBlock Text="Number"/>
+                <TextBlock Text="{Binding Number.Number}"/>
+
+                <TextBlock Text="Date of registration"/>
+                <TextBlock Text="{Binding Number.DateOfRegStr}"/>
+
+                <TextBlock Text="Date of the last data update"/>
+                <TextBlock Text="{Binding Number.LastUpdateDateStr}"/>
+            </UniformGrid>
+
+            <Grid Margin="0 20 0 0" Grid.Row="1">
+                <RichTextBox BorderThickness="0" IsReadOnly="True">
+                    <RichTextBox.Document>
+                        <FlowDocument>
+                            <Paragraph>
+                                <Run Text="Description" FontWeight="Black"/>
+                            </Paragraph>
+                            <Paragraph>
+                                <Run Text="{Binding Number.Description,Mode=OneWay}"/>
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox.Document>
+                </RichTextBox>
+            </Grid>
+          
+        </Grid>
+        
     </Grid>
 </Page>

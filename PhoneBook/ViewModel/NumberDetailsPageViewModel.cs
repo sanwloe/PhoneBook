@@ -1,5 +1,5 @@
-﻿using Model.Models;
-using PhoneBook.Abstractions;
+﻿using PhoneBook.Abstractions;
+using PhoneBook.Model;
 using PhoneBook.Services;
 using System;
 using System.Collections.Generic;

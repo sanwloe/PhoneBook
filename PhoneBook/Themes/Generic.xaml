@@ -16,6 +16,13 @@
                 </Style>
             </Setter.Value>
         </Setter>
+        <Setter Property="RowStyle">
+            <Setter.Value>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>
