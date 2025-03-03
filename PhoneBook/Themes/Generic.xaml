@@ -7,7 +7,7 @@
         <Setter Property="RowHeaderWidth" Value="0"/>
         <Setter Property="CanUserResizeColumns" Value="False"/>
         <Setter Property="CanUserResizeRows" Value="False"/>
-        <Setter Property="HeadersVisibility" Value="None"/>
+        <Setter Property="HeadersVisibility" Value="Column"/>
         <Setter Property="IsReadOnly" Value="True"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Background" Value="Transparent"/>
