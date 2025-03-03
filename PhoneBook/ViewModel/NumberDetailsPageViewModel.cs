@@ -1,4 +1,5 @@
 ﻿using PhoneBook.Abstractions;
+using PhoneBook.Abstractions.Interfaces;
 using PhoneBook.Model;
 using PhoneBook.Services;
 using System;
@@ -12,11 +13,11 @@ namespace PhoneBook.ViewModel
 {
     public class NumberDetailsPageViewModel : ViewModelBase
     {
-        public NumberDetailsPageViewModel(NumberInfoService service)
+        public NumberDetailsPageViewModel(INumberInfoService service)
         {
             _numberInfoService = service;
         }
-        private NumberInfoService _numberInfoService;
+        private INumberInfoService _numberInfoService;
         public NavigationService NavigationService { get; set; } = null!;
         public NumberInfo Number 
         { 

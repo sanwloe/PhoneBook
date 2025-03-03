@@ -19,9 +19,8 @@ namespace PhoneBook.ViewModel
     {
         public MainWindowViewModel()
         {
-            GoBackCommand = new RelayCommand(GoBack);
+            
         }
-        public RelayCommand GoBackCommand { get; set; }
         public NavigationService NavigationService 
         {
             get => GetValue<NavigationService>();
@@ -42,13 +41,6 @@ namespace PhoneBook.ViewModel
         public void ShowNumbers()
         {
             NavigationService.Navigate(NumbersPage);
-        }
-        public void GoBack()
-        {
-            if (NavigationService.CanGoBack)
-            {
-                NavigationService.GoBack();
-            }
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using PhoneBook.Extensions.Xaml;
 using System.Windows.Navigation;
+using PhoneBook.Abstractions.Interfaces;
 
 namespace PhoneBook
 {
@@ -23,7 +24,7 @@ namespace PhoneBook
             {
                 services.AddSingleton<App>();
                 services.AddSqlServer<PBDataContext>(null);
-                services.AddSingleton<NumberInfoService>();
+                services.AddSingleton<INumberInfoService,NumberInfoService>();
             });
             var host = builder.Build();
             var app = host.Services.GetService<App>();

@@ -5,18 +5,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace PhoneBook
 {
-    public partial class App : System.Windows.Application
+    public partial class App : Application
     {
+        public App()
+        {
+            InitializeComponent();
+        }
         public App(NumberInfoService service)
         {
-            this.Resources.MergedDictionaries.Add(new()
-            {
-                Source = new Uri("Themes/Generic.xaml", UriKind.Relative)
-            });
-            //MessageBox.Show(service.GetNumbers().Count.ToString());
+            InitializeComponent();
         }
         protected override void OnStartup(StartupEventArgs e)
         {

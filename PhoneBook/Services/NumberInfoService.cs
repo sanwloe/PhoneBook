@@ -1,4 +1,5 @@
 ﻿using DL.DataContext;
+using Microsoft.EntityFrameworkCore;
 using PhoneBook.Abstractions.Interfaces;
 using PhoneBook.Extensions;
 using PhoneBook.Model;
@@ -18,24 +19,36 @@ namespace PhoneBook.Services
         {
             _dataContext = context;
         }
+        public event Action<NumberInfo> OnNumberInfoAdded = null!;
+        public event Action<NumberInfo> OnNumberInfoChanged = null!;
+        public event Action<NumberInfo> OnNumberInfoDeleted = null!;
         public List<NumberInfo> GetNumbers()
         {
-            return _dataContext.Numbers.Map().ToList();
+            return _dataContext.Numbers.AsNoTracking().Map().ToList();
         }
         public void Add(NumberInfo info)
         {
             _dataContext.Numbers.Add(info.Map());
             _dataContext.SaveChanges();
+            OnNumberInfoAdded?.Invoke(info);
         }
         public void Update(NumberInfo info) 
         {
-            _dataContext.Update(info.Map());
+            info.LastUpdateDate = DateTimeOffset.Now;
+            var existingObject = _dataContext.Numbers.FirstOrDefault(x => x.Number == info.Number);
+            if(existingObject!=null)
+            {
+                _dataContext.Entry(existingObject).State = EntityState.Detached;
+            }
+            _dataContext.Numbers.Update(info.Map());
             _dataContext.SaveChanges();
+            OnNumberInfoChanged?.Invoke(info);
         }  
         public void Remove(NumberInfo info)
         {
             _dataContext.Remove(info.Map());
             _dataContext.SaveChanges();
+            OnNumberInfoDeleted?.Invoke(info);
         }
     }
 }

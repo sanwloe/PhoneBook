@@ -19,48 +19,38 @@
     </Page.DataContext>
     <Grid>
         <DataGrid Style="{DynamicResource styleNumbersDataGrid}" ItemsSource="{Binding Numbers}" AutoGenerateColumns="False">
+            <DataGrid.Resources>
+                <ContextMenu x:Key="contextMenu">
+                    <MenuItem Header="Open details" Command="{Binding DisplayNumberInfoDetailsCommand,Source={StaticResource vm}}" CommandParameter="{Binding}"/>
+                    <MenuItem Header="Edit" Command="{Binding EditNumberInfoCommand,Source={StaticResource vm}}" CommandParameter="{Binding}"/>
+                </ContextMenu>
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTemplateColumn Width="*" Header="Phone">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Number}">
-                                <TextBlock.InputBindings>
-                                    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OnMouseLeftDoubleClickNumberSelectedCommand,Source={StaticResource vm}}" CommandParameter="{Binding}"/>
-                                </TextBlock.InputBindings>
-                            </TextBlock>
+                            <TextBlock ContextMenu="{StaticResource contextMenu}" Text="{Binding Number}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Width="*" Header="Name">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding FirstName}">
-                                <TextBlock.InputBindings>
-                                    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OnMouseLeftDoubleClickNumberSelectedCommand,Source={StaticResource vm}}" CommandParameter="{Binding}"/>
-                                </TextBlock.InputBindings>
-                            </TextBlock>
+                            <TextBlock ContextMenu="{StaticResource contextMenu}" Text="{Binding FirstName}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Width="*" Header="Date of registration">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding DateOfRegStr}">
-                                <TextBlock.InputBindings>
-                                    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OnMouseLeftDoubleClickNumberSelectedCommand,Source={StaticResource vm}}" CommandParameter="{Binding}"/>
-                                </TextBlock.InputBindings>
-                            </TextBlock>
+                            <TextBlock ContextMenu="{StaticResource contextMenu}" Text="{Binding DateOfRegStr}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Width="*" Header="Time of the last data update">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding LastUpdateDateStr}">
-                                <TextBlock.InputBindings>
-                                    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OnMouseLeftDoubleClickNumberSelectedCommand,Source={StaticResource vm}}" CommandParameter="{Binding}"/>
-                                </TextBlock.InputBindings>
-                            </TextBlock>
+                            <TextBlock ContextMenu="{StaticResource contextMenu}" Text="{Binding LastUpdateDateStr}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
