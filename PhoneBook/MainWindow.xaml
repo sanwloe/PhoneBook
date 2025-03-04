@@ -17,7 +17,7 @@
     <Window.DataContext>
         <Binding Source="{StaticResource vm}"/>
     </Window.DataContext>
-    <Grid DataContext="{Binding Source={StaticResource vm}}">
+    <Grid Margin="10 0 0 0" DataContext="{Binding Source={StaticResource vm}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
@@ -26,8 +26,23 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
-        <Grid Margin="10 10 0 0" Grid.Row="1" Grid.Column="1">
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Cursor="Hand" Text="Tools">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:ChangePropertyAction TargetObject="{Binding ElementName=toolsContextMenu}" PropertyName="IsOpen" Value="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <TextBlock.ContextMenu>
+                        <ContextMenu x:Name="toolsContextMenu" Placement="Mouse">
+                            <MenuItem Header="Add new phone" Command="{Binding DisplayNumberAddPageCommand,Source={StaticResource vm}}"/>
+                        </ContextMenu>
+                    </TextBlock.ContextMenu>
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="0 10 0 0" Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>

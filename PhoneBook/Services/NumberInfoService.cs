@@ -28,27 +28,33 @@ namespace PhoneBook.Services
         }
         public void Add(NumberInfo info)
         {
-            _dataContext.Numbers.Add(info.Map());
+            var mapObj = info.Map();
+            _dataContext.Numbers.Add(mapObj);
             _dataContext.SaveChanges();
             OnNumberInfoAdded?.Invoke(info);
         }
         public void Update(NumberInfo info) 
         {
             info.LastUpdateDate = DateTimeOffset.Now;
-            var existingObject = _dataContext.Numbers.FirstOrDefault(x => x.Number == info.Number);
-            if(existingObject!=null)
-            {
-                _dataContext.Entry(existingObject).State = EntityState.Detached;
-            }
+            DetachObject(info);
             _dataContext.Numbers.Update(info.Map());
             _dataContext.SaveChanges();
             OnNumberInfoChanged?.Invoke(info);
         }  
         public void Remove(NumberInfo info)
         {
+            DetachObject(info);
             _dataContext.Remove(info.Map());
             _dataContext.SaveChanges();
             OnNumberInfoDeleted?.Invoke(info);
+        }
+        private void DetachObject(NumberInfo info)
+        {
+            var existingObject = _dataContext.Numbers.FirstOrDefault(x => x.Number == info.Number);
+            if (existingObject != null)
+            {
+                _dataContext.Entry(existingObject).State = EntityState.Detached;
+            }
         }
     }
 }

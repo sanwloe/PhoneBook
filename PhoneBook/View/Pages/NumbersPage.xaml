@@ -23,6 +23,7 @@
                 <ContextMenu x:Key="contextMenu">
                     <MenuItem Header="Open details" Command="{Binding DisplayNumberInfoDetailsCommand,Source={StaticResource vm}}" CommandParameter="{Binding}"/>
                     <MenuItem Header="Edit" Command="{Binding EditNumberInfoCommand,Source={StaticResource vm}}" CommandParameter="{Binding}"/>
+                    <MenuItem Header="Delete" Command="{Binding DeleteNumberInfoCommand,Source={StaticResource vm}}" CommandParameter="{Binding}"/>
                 </ContextMenu>
             </DataGrid.Resources>
             <DataGrid.Columns>

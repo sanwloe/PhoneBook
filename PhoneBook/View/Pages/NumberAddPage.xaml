@@ -1,22 +1,21 @@
-﻿<Page x:Class="PhoneBook.View.Pages.NumberEditPage"
+﻿<Page x:Class="PhoneBook.View.Pages.NumberAddPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:PhoneBook.View.Pages"
-      xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
-      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-      xmlns:viewmodels="clr-namespace:PhoneBook.ViewModel" xmlns:xamlExt="clr-namespace:PhoneBook.Extensions.Xaml"
+      xmlns:local="clr-namespace:PhoneBook.View.Pages" xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:xamlExt="clr-namespace:PhoneBook.Extensions.Xaml"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="NumberEditPage">
+      Title="NumberAddPage"
+      xmlns:viewmodels="clr-namespace:PhoneBook.ViewModel">
 
     <Page.Resources>
-        <xamlExt:DISource Type="{x:Type viewmodels:NumberEditPageViewModel}" x:Key="vm"/>
+        <xamlExt:DISource Type="{x:Type viewmodels:NumberAddPageViewModel}" x:Key="vm"/>
     </Page.Resources>
     <Page.DataContext>
         <Binding Source="{StaticResource vm}"/>
     </Page.DataContext>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -47,7 +46,7 @@
                 </Style>
             </StackPanel.Resources>
             <TextBlock Text="Number"/>
-            <TextBox IsEnabled="False" Text="{Binding NumberInfo.Number}"/>
+            <TextBox Text="{Binding NumberInfo.Number}"/>
 
             <TextBlock Text="First name"/>
             <TextBox Text="{Binding NumberInfo.FirstName}"/>
@@ -69,7 +68,7 @@
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
-            <Button Margin="5 20 0 20" HorizontalAlignment="Left" Grid.Row="3" Content="Apply" Command="{Binding ApplyEditsCommand}"/>
+            <Button Margin="5 20 0 20" HorizontalAlignment="Left" Grid.Row="3" Content="Add new" Command="{Binding AddNewPhoneInfoCommand,Source={StaticResource vm}}"/>
         </Grid>
     </Grid>
 </Page>

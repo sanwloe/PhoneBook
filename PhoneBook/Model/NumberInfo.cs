@@ -9,9 +9,35 @@ namespace PhoneBook.Model
 {
     public class NumberInfo : BindableBase
     {
+        public NumberInfo()
+        {
+            Number = string.Empty;
+            FirstName = string.Empty;
+            LastName = string.Empty;
+            FullName = string.Empty;
+            Description = string.Empty;
+            DateOfRegistration = DateTimeOffset.Now;
+            LastUpdateDate = DateTimeOffset.Now;
+        }
         public string Number { get => GetValue<string>(); set => SetValue(value); } 
-        public string FirstName { get => GetValue<string>(); set => SetValue(value); }
-        public string LastName { get => GetValue<string>(); set => SetValue(value); }
+        public string FirstName 
+        {
+            get => GetValue<string>();
+            set
+            {
+                SetValue(value);
+                UpdateFullName();
+            }
+        }
+        public string LastName 
+        { 
+            get => GetValue<string>();
+            set
+            {
+                SetValue(value);
+                UpdateFullName();
+            }
+        }
         public string FullName { get => GetValue<string>(); set => SetValue(value); }
         public DateTimeOffset DateOfRegistration 
         { 
@@ -34,5 +60,16 @@ namespace PhoneBook.Model
         public string Description { get; set; } = string.Empty;
         public string DateOfRegStr { get => DateOfRegistration.DateTime.ToLocalTime().ToString(); }
         public string LastUpdateDateStr { get => LastUpdateDate.DateTime.ToLocalTime().ToString(); }
+        public bool IsValid()
+        {
+            return !string.IsNullOrEmpty(FirstName) && !string.IsNullOrEmpty(LastName) && !string.IsNullOrEmpty(Number);
+        }
+        private void UpdateFullName()
+        {
+            if(!string.IsNullOrEmpty(FirstName) && !string.IsNullOrEmpty(LastName))
+            {
+                FullName = $"{FirstName} {LastName}";
+            }
+        }
     }
 }

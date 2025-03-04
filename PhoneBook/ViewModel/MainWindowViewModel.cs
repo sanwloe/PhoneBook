@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Model.Models;
 using PhoneBook.Abstractions;
+using PhoneBook.Abstractions.Interfaces;
 using PhoneBook.Extensions;
 using PhoneBook.Services;
 using PhoneBook.View.Pages;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Navigation;
 
 namespace PhoneBook.ViewModel
@@ -19,8 +21,9 @@ namespace PhoneBook.ViewModel
     {
         public MainWindowViewModel()
         {
-            
+            DisplayNumberAddPageCommand = new(DisplayNumberAddPage);
         }
+        public RelayCommand DisplayNumberAddPageCommand { get; set; }
         public NavigationService NavigationService 
         {
             get => GetValue<NavigationService>();
@@ -34,13 +37,22 @@ namespace PhoneBook.ViewModel
                     {
                         vm.NavigationService = NavigationService;
                     });
+                    NumberAddPage.Do<NumberAddPageViewModel>((vm) =>
+                    {
+                        vm.NavigationService = NavigationService;
+                    });
                 }
             }
         }
         private NumbersPage NumbersPage { get; set; } = new();
+        private NumberAddPage NumberAddPage { get; set; } = new();
         public void ShowNumbers()
         {
             NavigationService.Navigate(NumbersPage);
+        }
+        private void DisplayNumberAddPage()
+        {
+            NavigationService.Navigate(NumberAddPage);
         }
     }
 }

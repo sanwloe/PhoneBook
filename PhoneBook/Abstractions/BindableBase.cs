@@ -15,8 +15,14 @@ namespace PhoneBook.Abstractions
 
         public T GetValue<T>([CallerMemberName] string? propertyName = null)
         {
-            _properties.TryGetValue(propertyName ?? string.Empty, out var value); 
-            return (T)value!;
+            if(_properties.TryGetValue(propertyName ?? string.Empty, out var value))
+            {
+                return (T)value!;
+            }
+            else
+            {
+                return default(T)!;
+            }
         }
         public void SetValue(object value, [CallerMemberName] string? propertyName = null)
         {
