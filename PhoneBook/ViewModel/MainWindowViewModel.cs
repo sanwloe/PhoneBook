@@ -19,10 +19,12 @@ namespace PhoneBook.ViewModel
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public MainWindowViewModel()
+        public MainWindowViewModel(ThemeService service)
         {
+            ThemeService = service;
             DisplayNumberAddPageCommand = new(DisplayNumberAddPage);
         }
+        public ThemeService ThemeService { get => GetValue<ThemeService>(); set => SetValue(value); }
         public RelayCommand DisplayNumberAddPageCommand { get; set; }
         public NavigationService NavigationService 
         {

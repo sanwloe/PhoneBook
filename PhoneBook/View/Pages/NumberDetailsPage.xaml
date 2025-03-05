@@ -10,7 +10,9 @@
       xmlns:viewmodels="clr-namespace:PhoneBook.ViewModel"
       xmlns:xamlExt="clr-namespace:PhoneBook.Extensions.Xaml"
       xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
-      xmlns:i="http://schemas.microsoft.com/xaml/behaviors">
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+      xmlns:ui="http://schemas.modernwpf.com/2019"
+      ui:Design.RequestedTheme="Default">
 
     <Page.Resources>
         <xamlExt:DISource Type="{x:Type viewmodels:NumberDetailsPageViewModel}" x:Key="vm"/>
@@ -21,18 +23,18 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" HorizontalAlignment="Left" Panel.ZIndex="1" VerticalAlignment="Top">
+        <Label Margin="25 10 0 0" Grid.Row="0" HorizontalAlignment="Left" Panel.ZIndex="1" VerticalAlignment="Top">
             <icons:PackIconMaterial Kind="ArrowLeft"/>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseLeftButtonDown">
                     <i:CallMethodAction TargetObject="{StaticResource vm}" MethodName="GoBack"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-        </TextBlock>
+        </Label>
 
         <Grid Grid.Row="1" Margin="20">
             <Grid.Resources>
-                <Style TargetType="TextBlock">
+                <Style TargetType="Label" BasedOn="{ui:StaticResource ResourceKey=DefaultLabelStyle}">
                     <Setter Property="Margin" Value="5"/>
                 </Style>
             </Grid.Resources>
@@ -43,17 +45,17 @@
             </Grid.RowDefinitions>
             
             <UniformGrid Grid.Row="0" Columns="2" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <TextBlock Text="Full name"/>
-                <TextBlock FontWeight="Bold" Text="{Binding Number.FullName}"/>
+                <Label Content="Name"/>
+                <Label FontWeight="Bold" Content="{Binding Number.FullName}"/>
 
-                <TextBlock Text="Number"/>
-                <TextBlock Text="{Binding Number.Number}"/>
+                <Label Content="Number"/>
+                <Label Content="{Binding Number.Number}"/>
 
-                <TextBlock Text="Date of registration"/>
-                <TextBlock Text="{Binding Number.DateOfRegStr}"/>
+                <Label Content="Date of registration"/>
+                <Label Content="{Binding Number.DateOfRegStr}"/>
 
-                <TextBlock Text="Date of the last data update"/>
-                <TextBlock Text="{Binding Number.LastUpdateDateStr}"/>
+                <Label Content="Date of the last data update"/>
+                <Label Content="{Binding Number.LastUpdateDateStr}"/>
             </UniformGrid>
 
             <Grid Margin="0 20 0 0" Grid.Row="1">

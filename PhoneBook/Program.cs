@@ -25,6 +25,7 @@ namespace PhoneBook
                 services.AddSingleton<App>();
                 services.AddSqlServer<PBDataContext>(null);
                 services.AddSingleton<INumberInfoService,NumberInfoService>();
+                services.AddSingleton<ThemeService>();
             });
             var host = builder.Build();
             var app = host.Services.GetService<App>();

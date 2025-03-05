@@ -5,13 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhoneBook"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="Phone book" Height="450" Width="800"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:viewmodels="clr-namespace:PhoneBook.ViewModel"
         xmlns:xamlExt="clr-namespace:PhoneBook.Extensions.Xaml"
-        xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks">
+        xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="True"
+        xmlns:converters="clr-namespace:PhoneBook.View.Converters">
 
     <Window.Resources>
+        <converters:ApplicationThemeConverter x:Key="themeConverter"/>
         <xamlExt:DISource Type="{x:Type viewmodels:MainWindowViewModel}" x:Key="vm"/>
     </Window.Resources>
     <Window.DataContext>
@@ -28,18 +32,15 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Cursor="Hand" Text="Tools">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseLeftButtonDown">
-                            <i:ChangePropertyAction TargetObject="{Binding ElementName=toolsContextMenu}" PropertyName="IsOpen" Value="True" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                    <TextBlock.ContextMenu>
-                        <ContextMenu x:Name="toolsContextMenu" Placement="Mouse">
-                            <MenuItem Header="Add new phone" Command="{Binding DisplayNumberAddPageCommand,Source={StaticResource vm}}"/>
-                        </ContextMenu>
-                    </TextBlock.ContextMenu>
-                </TextBlock>
+                <Menu>
+                    <MenuItem Header="Tools">
+                        <MenuItem Header="Add new phone" Command="{Binding DisplayNumberAddPageCommand,Source={StaticResource vm}}"/>
+                    </MenuItem>
+                    <MenuItem Header="View">
+                        <ui:RadioMenuItem Command="{Binding ThemeService.SetDarkThemeCommand,Source={StaticResource vm}}" Header="Dark" GroupName="radioThemeButtons" IsChecked="{Binding ThemeService.CurrentTheme,Converter={StaticResource themeConverter},ConverterParameter=Dark,Source={StaticResource vm},Mode=OneWay}"/>
+                        <ui:RadioMenuItem Command="{Binding ThemeService.SetLightThemeCommand,Source={StaticResource vm}}" Header="Light" GroupName="radioThemeButtons" IsChecked="{Binding ThemeService.CurrentTheme,Converter={StaticResource themeConverter},ConverterParameter=Light,Source={StaticResource vm},Mode=OneWay}"/>
+                    </MenuItem>
+                </Menu>
             </StackPanel>
         </Grid>
         <Grid Margin="0 10 0 0" Grid.Row="1" Grid.Column="1">

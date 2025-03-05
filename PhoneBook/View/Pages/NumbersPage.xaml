@@ -9,7 +9,8 @@
       Title="NumbersPage"
       xmlns:viewmodels="clr-namespace:PhoneBook.ViewModel"
       xmlns:xamlExt="clr-namespace:PhoneBook.Extensions.Xaml"
-      xmlns:i="http://schemas.microsoft.com/xaml/behaviors">
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+      xmlns:ui="http://schemas.modernwpf.com/2019">
 
     <Page.Resources>
         <xamlExt:DISource Type="{x:Type viewmodels:NumbersPageViewModel}" x:Key="vm"/>

@@ -7,7 +7,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="NumberAddPage"
-      xmlns:viewmodels="clr-namespace:PhoneBook.ViewModel">
+      xmlns:viewmodels="clr-namespace:PhoneBook.ViewModel"
+      xmlns:ui="http://schemas.modernwpf.com/2019">
 
     <Page.Resources>
         <xamlExt:DISource Type="{x:Type viewmodels:NumberAddPageViewModel}" x:Key="vm"/>
@@ -16,42 +17,40 @@
         <Binding Source="{StaticResource vm}"/>
     </Page.DataContext>
     
-    <Grid>
+    <Grid Margin="20 0 0 0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" HorizontalAlignment="Left" Panel.ZIndex="1" VerticalAlignment="Top">
+        <Label Margin="5 0 0 0" Grid.Row="0" HorizontalAlignment="Left" Panel.ZIndex="1" VerticalAlignment="Top">
             <icons:PackIconMaterial Kind="ArrowLeft"/>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseLeftButtonDown">
                     <i:CallMethodAction TargetObject="{StaticResource vm}" MethodName="GoBack"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-        </TextBlock>
+        </Label>
 
         <StackPanel Orientation="Vertical" Grid.Row="1" HorizontalAlignment="Stretch">
             <StackPanel.Resources>
-                <Style TargetType="TextBlock">
+                <Style TargetType="Label" BasedOn="{ui:StaticResource ResourceKey=DefaultLabelStyle}">
                     <Setter Property="Margin" Value="5"/>
                 </Style>
-                <Style TargetType="TextBox">
+                <Style TargetType="TextBox" BasedOn="{ui:StaticResource ResourceKey=DefaultTextBoxStyle}">
                     <Setter Property="Margin" Value="5"/>
                     <Setter Property="HorizontalAlignment" Value="Left"/>
-                    <Setter Property="Background" Value="Silver"/>
                     <Setter Property="Width" Value="150"/>
-                    <Setter Property="BorderThickness" Value="0"/>
                 </Style>
             </StackPanel.Resources>
-            <TextBlock Text="Number"/>
+            <Label Content="Number"/>
             <TextBox Text="{Binding NumberInfo.Number}"/>
 
-            <TextBlock Text="First name"/>
+            <Label Content="First name"/>
             <TextBox Text="{Binding NumberInfo.FirstName}"/>
 
-            <TextBlock Text="Last name"/>
+            <Label Content="Last name"/>
             <TextBox Text="{Binding NumberInfo.LastName}"/>
         </StackPanel>
         <Grid Grid.Row="2" VerticalAlignment="Stretch">
@@ -60,7 +59,7 @@
                 <RowDefinition/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <TextBlock Margin="5" Grid.Row="0" Text="Description"/>
+            <Label Margin="5" Grid.Row="0" Content="Description"/>
             <RichTextBox Margin="5" Grid.Row="1" VerticalContentAlignment="Top">
                 <FlowDocument>
                     <Paragraph>
