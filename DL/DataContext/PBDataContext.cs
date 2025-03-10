@@ -17,10 +17,7 @@ namespace DL.DataContext
         }
         public PBDataContext(DbContextOptions<PBDataContext> opt) : base(opt)
         {
-            if(this.Database.EnsureCreated())
-            {
-                this.Database.Migrate();
-            }
+            this.Database.Migrate();
         }
         public DbSet<NumberInfo> Numbers { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
